@@ -32,12 +32,12 @@
             </div>
             <div class="form-group">
               <label for="">Email</label>
-              <input type="text" name="Email" id="" class="form-control" placeholder="" aria-describedby="helpId">
+              <input type="email" name="Email" id="" class="form-control" placeholder="" aria-describedby="helpId">
               <small id="helpId" class="text-muted">Help text</small>
             </div>
             <div class="form-group">
               <label for="">Password</label>
-              <input type="password" name="Password" id="" class="form-control" placeholder="" aria-describedby="helpId">
+              <input type="password" name="Password" id="" class="form-control" placeholder="" aria-describedby="helpId" minlength="4">
               <small id="helpId" class="text-muted">Password must be more than 4</small>
             </div>
             
