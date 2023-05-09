@@ -26,10 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errors)) {
         $password = password_hash($password, PASSWORD_DEFAULT);
         $sql = "INSERT INTO users (first_name, last_name, username, email, password) VALUES('$fname', '$lname', '$username', '$email', '$password')";
-        if($conn->query($sql)){
+        if($conn->query($sql) === true){
             //went well
             $_SESSION['message'] = "Registration successful!";
-            header('location: ../login.php');
+            return header('location: ../login.php');
         }
         else {
             $_SESSION['error'] = 'Sorry an error occurred please again!';
