@@ -22,7 +22,7 @@
     //get this users tasks
     $sql = "SELECT * FROM `tasks` WHERE user_id = '$user_id'";
     $query = $conn->query($sql);
-    $tasks  = $query->fetch_assoc();
+    $tasks  = $query->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +42,11 @@
             <div class="container">
                 <h1>Tasks Page</h1>
             </div>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Home</a>
+                <a class="btn btn-success btn-lg" href="Jumbo action link" role="button">Create task</a>
+                <a class="btn btn-danger btn-lg" href="Jumbo action link" role="button">Logout</a>
+            </p>
         </div>
         <?php
           if(isset($_SESSION['error'])){
@@ -54,10 +59,23 @@
           }
 
         ?>
-        <div class="col">
-            
+        <div class="container">
+            <div class="col">
+                <?php
+                    if (!empty($tasks)) {
+                        foreach ($tasks as $task) {
+                            ?>
+                            <div class="row <?=(is_null($task['expiry']))?'alert alert-success':'alert alert-warning'?>">
+                                <p><?=$task['body']?></p>
+                                <a href="/taskedit.php?taskId=<?=$task['id']?>" class="btn btn-warning">Edit</a>
+                                <a href="/taskdelete.php?taskId=<?=$task['id']?>" class="btn btn-danger">Delete</a>
+                            </div>
+                            <?php
+                        }
+                    }
+                ?>
+            </div>
         </div>
     </div>
-    
 </body>
 </html>
