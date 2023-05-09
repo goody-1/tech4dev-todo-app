@@ -43,7 +43,7 @@
                 <h1>Tasks Page</h1>
             </div>
             <p class="lead">
-                <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Home</a>
+                <!-- <a class="btn btn-primary btn-lg" href="index.php" role="button">Home</a> -->
                 <a class="btn btn-success btn-lg" href="Jumbo action link" role="button">Create task</a>
                 <a class="btn btn-danger btn-lg" href="Jumbo action link" role="button">Logout</a>
             </p>

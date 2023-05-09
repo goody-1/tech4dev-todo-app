@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['is_logged_in'])) {
-    header('location: dashboad.php');
+    header('location: tasks.php');
 }
 ?>
 <!DOCTYPE html>
