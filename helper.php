@@ -1,5 +1,5 @@
 <?php
-require_once  '../config.php';
+require_once  'config.php';
 function sanitize(string $var)
 {
     return htmlspecialchars(stripslashes(trim($var)));

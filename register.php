@@ -1,3 +1,4 @@
+<?php session_start()?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +19,28 @@
                 <h1>Registration Page</h1>
             </div>
         </div>
-        
-        <form action="/action/register_action.php" method="post">
+        <?php
+          if(isset($_SESSION['error'])){
+            ?>
+              <div class="alert alert-danger">
+                <strong>Sorry!</strong> <?=$_SESSION['error']?>
+              </div>
+              <?php
+              unset($_SESSION['error']);
+          }
+
+          if (isset($_SESSION['errors'])) {
+            foreach ($_SESSION['errors'] as $key => $value) {
+              ?>
+              <div class="alert alert-danger">
+                <?=$value?>
+              </div>
+              <?php
+              unset($_SESSION['errors']);
+            }
+          }
+        ?>
+        <form action="action/register_action.php" method="post">
             <div class="form-group">
               <label for="">First Name</label>
               <input type="text" name="fname" id="" class="form-control" placeholder="" aria-describedby="helpId">
@@ -31,13 +52,18 @@
               <small id="helpId" class="text-muted">Help text</small>
             </div>
             <div class="form-group">
+              <label for="">Username</label>
+              <input type="text" name="username" id="" class="form-control" placeholder="" aria-describedby="helpId">
+              <small id="helpId" class="text-muted">Help text</small>
+            </div>
+            <div class="form-group">
               <label for="">Email</label>
-              <input type="email" name="Email" id="" class="form-control" placeholder="" aria-describedby="helpId">
+              <input type="email" name="email" id="" class="form-control" placeholder="" aria-describedby="helpId">
               <small id="helpId" class="text-muted">Help text</small>
             </div>
             <div class="form-group">
               <label for="">Password</label>
-              <input type="password" name="Password" id="" class="form-control" placeholder="" aria-describedby="helpId" minlength="4">
+              <input type="password" name="password" id="" class="form-control" placeholder="" aria-describedby="helpId" minlength="4">
               <small id="helpId" class="text-muted">Password must be more than 4</small>
             </div>
             

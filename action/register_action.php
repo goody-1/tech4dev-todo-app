@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once './action/helper.php';
+require_once '../helper.php';
 $conn = con();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //i received a request
@@ -8,16 +8,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $$key = sanitize($value);
     }
 
-    $password = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO users (first_name, last_name, email, password) VALUES('$fname', '$lname','$email', '$password')";
+    $errors = [];
+    //validate that email is unique
+    $sql = "SELECT `email` FROM `users` WHERE email = '$email'";
     $query = $conn->query($sql);
-    if($query->num_rows > 0){
-        //went well
-        $_SESSION['message'] = "Registration successful!";
-        header('location: login.php');
+    if ($query->num_rows >0) {
+        $errors['email'] = "Email already exists";
     }
-    else {
-        $_SESSION['error'] = ['Sorry could not create user'];
+
+    //validate that username is unique
+    $sql = "SELECT `username` FROM `users` WHERE username='$username'";
+    $query = $conn->query($sql);
+    if ($query->num_rows >0) {
+        $errors['username'] = "Username already exists";
     }
-    header('location: register.php');
+
+    if (empty($errors)) {
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO users (first_name, last_name, username, email, password) VALUES('$fname', '$lname', '$username', '$email', '$password')";
+        if($conn->query($sql)){
+            //went well
+            $_SESSION['message'] = "Registration successful!";
+            header('location: ../login.php');
+        }
+        else {
+            $_SESSION['error'] = 'Sorry an error occurred please again!';
+        }
+    }
+    $_SESSION['errors'] = $errors;
+    header('location: ../register.php');
 }
