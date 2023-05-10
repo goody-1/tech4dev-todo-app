@@ -6,11 +6,6 @@
         $_SESSION['error'] = "Please login to continue!";
         return header('location: login.php');
     }
-
-    //get this users tasks
-    $sql = "SELECT * FROM `tasks` WHERE user_id = '$user_id'";
-    $query = $conn->query($sql);
-    $tasks  = $query->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,19 +16,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Tasks</title>
+    <title>Create Tasks</title>
 </head>
 <body>
     <div class="container">
         
         <div class="jumbotron">
             <div class="container">
-                <h1>Tasks Page</h1>
+                <h1>Create Tasks Page</h1>
             </div>
             <p>Welcome <?=$user->username?>!</p>
             <p class="lead">
                 <!-- <a class="btn btn-primary btn-lg" href="index.php" role="button">Home</a> -->
-                <a class="btn btn-success btn-lg" href="create_todo" role="button">Create task</a>
+                <a class="btn btn-success btn-lg" href="tasks.php" role="button">View all task</a>
                 <a class="btn btn-danger btn-lg" href="logout.php" role="button">Logout</a>
             </p>
         </div>
@@ -47,32 +42,20 @@
               unset($_SESSION['error']);
           }
 
-          if(isset($_SESSION['message'])){
-            ?>
-              <div class="alert alert-success">
-                <strong>Hurray!</strong> <?=$_SESSION['message']?>
-              </div>
-              <?php
-              unset($_SESSION['message']);
-          }
-
         ?>
         <div class="container">
-            <div class="col">
-                <?php
-                    if (!empty($tasks)) {
-                        foreach ($tasks as $task) {
-                            ?>
-                            <div class="row <?=(is_null($task['expiry']))?'alert alert-success':'alert alert-warning'?>">
-                                <p><?=$task['body']?></p>
-                                <a href="taskedit.php?taskId=<?=$task['id']?>" class="btn btn-warning">Edit</a>
-                                <a href="taskdelete.php?taskId=<?=$task['id']?>" class="btn btn-danger">Delete</a>
-                            </div>
-                            <?php
-                        }
-                    }
-                ?>
-            </div>
+            <form action="action/create_task_action.php" method="post">
+                <div class="form-group">
+                    <label for="">What do you want to do?</label>
+                    <textarea name="body" id="body" cols="30" rows="10" class="form-control" required></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="">What time do you want to do this?</label>
+                  <input type="time" name="time" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  <small id="helpId" class="text-muted">Help text</small>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
         </div>
     </div>
 </body>

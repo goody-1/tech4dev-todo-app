@@ -4,9 +4,9 @@ require_once '../helper.php';
 $conn = con();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //i received a request
-    foreach ($_POST as $key => $value) {
-        $$key = sanitize($value);
-    }
+    // foreach ($_POST as $key => $value) {
+    //     $$key = sanitize($value);
+    // }
 
     $errors = [];
     //validate that email is unique

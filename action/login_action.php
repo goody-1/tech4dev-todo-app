@@ -4,9 +4,9 @@ require_once '../helper.php';
 $conn = con();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //i received a request
-    foreach ($_POST as $key => $value) {
-        $$key = sanitize($value);
-    }
+    // foreach ($_POST as $key => $value) {
+    //     $$key = sanitize($value);
+    // }
 
     //is this user pat of the system?
     $sql = "SELECT * FROM `users` WHERE email = '$email'";
