@@ -1,4 +1,4 @@
-<?php 
+<?php
     session_start();
     require_once 'helper.php';
     $conn = con();
@@ -20,7 +20,7 @@
 </head>
 <body>
     <div class="container">
-        
+
         <div class="jumbotron">
             <div class="container">
                 <h1>Create Tasks Page</h1>

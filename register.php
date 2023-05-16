@@ -1,4 +1,4 @@
-<?php 
+<?php
     session_start();
     if (isset($_SESSION['is_logged_in'])) {
         header('location: tasks.php');
@@ -16,9 +16,9 @@
     <title>Register</title>
 </head>
 <body>
-    
+
     <div class="container">
-        
+
         <div class="jumbotron">
             <div class="container">
                 <h1>Registration Page</h1>
@@ -71,11 +71,11 @@
               <input type="password" name="password" id="" class="form-control" placeholder="" aria-describedby="helpId" minlength="4">
               <small id="helpId" class="text-muted">Password must be more than 4</small>
             </div>
-            
+
             <button type="submit" class="btn btn-success">Submit</button>
-            
+
         </form>
     </div>
-    
+
 </body>
 </html>

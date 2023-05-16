@@ -1,4 +1,5 @@
 <?php
+define('PUBLIC_PATH', realpath(__DIR__));
 session_start();
 if (isset($_SESSION['is_logged_in'])) {
     header('location: tasks.php');
@@ -13,10 +14,10 @@ if (isset($_SESSION['is_logged_in'])) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Tech4Dev Todo App (Bancked Evening Session)</title>
+    <title>Tech4Dev Todo App (Backed Evening Session)</title>
 </head>
 <body>
-    
+
     <div class="container">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
@@ -31,6 +32,6 @@ if (isset($_SESSION['is_logged_in'])) {
             </div>
         </div>
     </div>
-    
+
 </body>
 </html>

@@ -23,7 +23,7 @@
 </head>
 <body>
     <div class="container">
-        
+
         <div class="jumbotron">
             <div class="container">
                 <h1>Edit Tasks Page</h1>
